@@ -1,0 +1,11 @@
+flask
+gunicorn
+itsdangerous
+jinja2
+sqlalchemy
+flask-sqlalchemy
+bcrypt
+# The following are requested by the prompt even if not strictly used by Flask
+fastapi
+uvicorn[standard]
+python-multipart

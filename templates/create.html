@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2 style="margin-top:0;">Create a Poll</h2>
+    <form action="/create" method="POST">
+        <div class="form-group">
+            <label for="question">Question</label>
+            <input type="text" name="question" id="question" class="form-control" placeholder="e.g., What is your favorite color?" required>
+        </div>
+        
+        <div id="options-container">
+            <div class="form-group">
+                <label>Options</label>
+                <input type="text" name="options" class="form-control" placeholder="Option 1" required style="margin-bottom:0.5rem;">
+                <input type="text" name="options" class="form-control" placeholder="Option 2" required style="margin-bottom:0.5rem;">
+                <input type="text" name="options" class="form-control" placeholder="Option 3 (Optional)" style="margin-bottom:0.5rem;">
+            </div>
+        </div>
+        
+        <p style="font-size:0.9rem; color:var(--text-muted);">Fill up to 5 options.</p>
+
+        <button type="submit" class="btn btn-block" style="margin-top:1.5rem;">Create Poll</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+        <h2 style="margin:0;">Active Polls</h2>
+        <a href="/create" class="btn">New Poll</a>
+    </div>
+
+    {% if polls %}
+        <ul class="poll-list">
+            {% for poll in polls %}
+            <li class="poll-item">
+                <div>
+                    <a href="/vote/{{ poll.id }}" class="poll-title">{{ poll.question }}</a>
+                    <span class="poll-meta">{{ poll.total_votes() }} votes</span>
+                </div>
+                <div>
+                    <a href="/vote/{{ poll.id }}" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Vote</a>
+                    <a href="/results/{{ poll.id }}" style="margin-left: 0.5rem; color: var(--primary); text-decoration: none; font-size: 0.9rem;">Results</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p style="text-align:center; color: var(--text-muted);">No polls available yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

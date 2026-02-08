@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2 style="margin-top:0;">{{ poll.question }}</h2>
+    
+    {% if has_voted %}
+    <div class="flash success">
+        You have already voted on this poll.
+    </div>
+    <div style="text-align:center; margin-top:2rem;">
+        <a href="/results/{{ poll.id }}" class="btn">View Results</a>
+    </div>
+    {% else %}
+    <form action="/vote/{{ poll.id }}" method="POST">
+        {% for option in poll.options %}
+        <div class="option-group">
+            <input type="radio" name="option" id="opt-{{ option.id }}" value="{{ option.id }}">
+            <label for="opt-{{ option.id }}" class="radio-label">
+                {{ option.text }}
+            </label>
+        </div>
+        {% endfor %}
+        
+        <button type="submit" class="btn btn-block" style="margin-top:2rem;">Submit Vote</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

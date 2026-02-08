@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2 style="margin-top:0;">{{ poll.question }}</h2>
+    <p class="poll-meta" style="margin-bottom: 2rem;">Total votes: {{ total }}</p>
+
+    {% for option in poll.options %}
+        {% set percent = (option.votes / total * 100) | round(1) if total > 0 else 0 %}
+        <div class="result-item">
+            <div class="result-header">
+                <span>{{ option.text }}</span>
+                <span>{{ option.votes }} votes ({{ percent }}%)</span>
+            </div>
+            <div class="result-bar-container">
+                <div class="result-bar" style="width: {{ percent }}%;"></div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div style="text-align:center; margin-top:2rem;">
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+</div>
+{% endblock %}
